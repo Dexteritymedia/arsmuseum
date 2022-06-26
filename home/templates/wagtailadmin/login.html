@@ -3,8 +3,8 @@
 {% load static %}
 
 {% block branding_login %}
-{% if settings.social_media.SiteSettings.site_name %}
-<h1>Sign in to {{ settings.social_media.SiteSettings.site_name }}</h1>
+{% if settings.site_settings.SiteSettings.site_name %}
+<h1>Sign in to {{ settings.site_settings.SiteSettings.site_name }}</h1>
 <!--wagtailadmin login title-->
 {% endif %}
 {% endblock %}

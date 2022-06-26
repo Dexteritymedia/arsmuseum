@@ -5,14 +5,14 @@
 
 {% block branding_title %}
 
-{% if settings.social_media.SiteSettings.site_name %}
-{{ settings.social_media.SiteSettings.site_name }}
+{% if settings.site_settings.SiteSettings.site_name %}
+{{ settings.site_settings.SiteSettings.site_name }}
 {% endif %}
 
 {% endblock %}
 {% block branding_favicon %}
-{% if settings.social_media.SiteSettings.site_logo %}
-{% image settings.social_media.SiteSettings.site_logo max-30x30 as icon_image %}
+{% if settings.site_settings.SiteSettings.site_logo %}
+{% image settings.site_settings.SiteSettings.site_logo max-30x30 as icon_image %}
 <link rel="shortcut icon" href="{{ icon_image.url }}" />
 {% endif %}
 <!--wagtailadmin favicon image-->
