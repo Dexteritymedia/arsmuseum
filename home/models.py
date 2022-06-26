@@ -15,7 +15,7 @@ from home import blocks
 class HomePage(Page):
 
     max_count = 1
-    template = 'home_page.html'
+    template = 'home.html'
     
     jumbotron = StreamField(
         [
@@ -75,7 +75,7 @@ class HomePage(Page):
     director = StreamField(
         [
             
-            ('mission', blocks.MissionBlock()),
+            ('mission', blocks.DirectorBlock()),
         ],
         null=True,
         blank=True,

@@ -50,7 +50,7 @@ class CarouselBlock(blocks.StructBlock):
     text = blocks.RichTextBlock(required=True, features=['bold','italic'])
     button_page = blocks.PageChooserBlock(required=False)
     button_url = blocks.URLBlock(required=False)
-    button_text = blocks.CharBlock(required=True, default='Read More', max_length=40)
+    button_text = blocks.CharBlock(required=False, default='Read More', max_length=40)
 
 
     class Meta:
@@ -66,7 +66,7 @@ class AboutBlock(blocks.StructBlock):
     text = blocks.RichTextBlock(required=True, features=['bold','italic'])
     button_page = blocks.PageChooserBlock(required=False)
     button_url = blocks.URLBlock(required=False)
-    button_text = blocks.CharBlock(required=True, default='Read More', max_length=40)
+    button_text = blocks.CharBlock(required=False, default='Read More', max_length=40)
 
 
     class Meta:
@@ -81,11 +81,25 @@ class MissionBlock(blocks.StructBlock):
     text = blocks.RichTextBlock(required=True, features=['bold','italic'])
     button_page = blocks.PageChooserBlock(required=False)
     button_url = blocks.URLBlock(required=False)
-    button_text = blocks.CharBlock(required=True, default='Read More', max_length=40)
+    button_text = blocks.CharBlock(required=False, default='Read More', max_length=40)
 
 
     class Meta:
         template = "blocks/mission.html"
+        label = "Mission"
+
+
+class DirectorBlock(blocks.StructBlock):
+    image = ImageChooserBlock(required=False)
+    title = blocks.CharBlock(required=True, max_length=60)
+    text = blocks.RichTextBlock(required=True, features=['bold','italic'])
+    button_page = blocks.PageChooserBlock(required=False)
+    button_url = blocks.URLBlock(required=False)
+    button_text = blocks.CharBlock(required=False, default='Read More', max_length=40)
+
+
+    class Meta:
+        template = "blocks/director_block.html"
         label = "Mission"
 
 
