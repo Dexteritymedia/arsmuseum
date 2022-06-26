@@ -1,0 +1,24 @@
+{% load wagtailimages_tags wagtailcore_tags %}
+
+
+{% for content in self.card %}
+<div class="col mb-5">
+					<div class="card mt-5 mb-5">
+					 {% image content.image original as img %}
+						<img src="{{ img.url }}" class="img-top2" alt="{{ img.alt }}">
+							<div class="card-body">
+								<h1 style="font-size: 35px;" class="card-title">{{ content.title|title }}</h1>
+								
+								<h5 class="card-title">{{ content.description|safe|title }}</h5>
+								<div class="text-end mt-5">
+								{% if content.button_page %}
+				<a href="{{ content.button_page.url }}" class="btn btn-primary" role="button">{{ content.button_text }}</a>
+			{% elif content.button_url %}
+				<a href="{{ content.button_url }}" class="btn btn-primary" role="button">{{ content.button_text }}</a>
+				</div>
+			{% endif %}
+							</div>
+					</div>
+				</div>
+
+{% endfor %}

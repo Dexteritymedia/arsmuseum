@@ -1,0 +1,234 @@
+{% load static wagtailimages_tags wagtailcore_tags wagtailuserbar menus_tags %}
+
+{% get_menu 'menu' as navigation %}
+{% get_menu 'footer' as footer %}
+
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>
+            {% block title %}
+                {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title|title }}{% endif %}
+            {% endblock %}
+            {% block title_suffix %}
+                {% wagtail_site as current_site %}
+                {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
+            {% endblock %}
+        </title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+        {# Global stylesheets #}
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/ARS.css' %}">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sana:wght@500|Libre+Bodoni|Righteous|Alegreya|Lora|Lato">
+
+        {% block extra_css %}
+            {# Override this in templates to add extra stylesheets #}
+        {% endblock %}
+
+		<style>
+		body {
+	font-family:"Alegreya Sans", Lora, serif;
+	font-size: 15px;
+}
+	@media (min-width: 768px) {
+		body {
+			font-size: 10px;
+		}
+	}
+	h1.title {
+		font-family: 'Lora', sans-serif;
+		font-weight: 900;
+		position: relative;
+	}
+	</style>
+
+		{% if settings.site_settings.SiteSettings.site_logo %}
+{% image settings.site_settings.SiteSettings.site_logo max-30x30 as icon_image %}
+<link rel="shortcut icon" href="{{ icon_image.url }}" />
+{% endif %}
+    </head>
+
+    <body class="{% block body_class %}{% endblock %}">
+        {% wagtailuserbar %}
+
+
+	<nav class="navbar fixed-top navbar-expand-lg navbar-dark py-0 bg-primary">
+	<!--<nav class="navbar navbar-light" style="background-color: #e3f2fd;"> to change the color
+	<div class="container">
+    <a class="navbar-brand" href="#"> to add image
+      <img src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24">Title
+    </a>
+  </div>-->
+
+  <div class="container-fluid">
+  {% if settings.site_settings.SiteSettings.show_title_in_menu_bar %}
+  {% if settings.site_settings.SiteSettings.site_name %}
+    <a class="navbar-brand" href="/" style="font-family: Righteous; font-size: 35px;">{{ settings.site_settings.SiteSettings.site_name }}</a>
+	{% endif %}
+	{% endif %}
+	{% if settings.site_settings.SiteSettings.show_in_menu_bar %}
+	{% image settings.site_settings.SiteSettings.site_logo max-50x50 as icon_image %}
+	<a href="/" style="margin: 5px;" class="logo"><img src="{{ icon_image.url }}" alt="{{ settings.site_settings.SiteSettings.site_name }}" class="img-fluid"></a>
+	{% endif %}
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	  <i class="fa fa-bars text-white"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+		{% for item in navigation.menu_items.all %}
+		<li class="nav-item text-uppercase">
+          <a class="nav-link active"{% if item.open_in_new_tab %} target="_blank"{% endif %} href="{{ item.link }}">{{ item.title|title }}</a>
+        </li>
+		{% endfor %}
+      </ul>
+	  {% csrf_token %}
+	  <form class="d-flex mb-3" action="{% url 'search' %}" method="get">
+        <input type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
+        <input type="submit" value="Search" class="button">
+    </form>
+
+    </div>
+  </div>
+</nav>
+
+
+
+
+        {% block content %}{% endblock %}
+
+
+    <footer class="text-white mt-5" style="background-color: #00008B;">
+    <div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-12 mt-5 mb-5">
+           <h1 class="mt-5"><i class="fas fa-archway"></i> Admission</h1>
+
+
+<p>Adult $18.00</p>
+
+<p>Senior $16.20</p>
+
+<p>Military $16.20</p>
+
+<p>Youth (4-12) $9.00</p>
+
+<p>Children under 4 $0.00</p>
+
+<p>Members $0.00</p>
+
+<hr>
+<h1><i class='fas fa-calendar-alt' style='font-size:28px'></i> Hours</h1>
+
+
+<p>Wednesday-Saturday.   <b>10am - 4pm</b></p>
+
+<p>Sunday-Tuesday by appointment only</p>
+<hr><h1><i class='fas fa-map-marker-alt' style='font-size:28px'></i> Address</h1>
+<p class="mb-5">249 St Philip Street Charleston SC 29403
+<br/>Historic Independent African Methodist Episcopal Church building</p>
+<p><i class="fas fa-phone"></i> 843-722-6166</p>
+</div>
+</div>
+</div>
+</footer>
+
+
+<footer class="bg-dark text-center text-white">
+  <div class="container p-4">
+<h1>Join Us on</h1>
+  <section class="mb-4 mt-3">
+  {% if settings.site_settings.SocialMediaSettings.facebook %}
+  <a class="btn btn-outline-light btn-floating m-1" href="{{ settings.site_settings.SocialMediaSettings.facebook }}" role="button">
+  <i class="fab fa-facebook-f"></i>
+  </a>
+   {% endif %}
+
+
+   {% if settings.site_settings.SocialMediaSettings.instagram %}
+  <a class="btn btn-outline-light btn-floating m-1" href="{{ settings.site_settings.SocialMediaSettings.instagram }}" role="button">
+  <i class="fab fa-instagram"></i>
+  </a>
+  {% endif %}
+
+  {% if settings.site_settings.SocialMediaSettings.twitter %}
+  <a class="btn btn-outline-light btn-floating m-1" href="{{ settings.site_settings.SocialMediaSettings.twitter }}" role="button">
+  <i class="fab fa-twitter"></i>
+  </a>
+  {% endif %}
+
+  {% if settings.site_settings.SocialMediaSettings.linkedin %}
+  <a class="btn btn-outline-light btn-floating m-1" href="{{ settings.site_settings.SocialMediaSettings.linkedin }}" role="button">
+  <i class="fab fa-linkedin-in"></i>
+  </a>
+  {% endif %}
+
+  {% if settings.site_settings.SocialMediaSettings.whatsapp %}
+  <a class="btn btn-outline-light btn-floating m-1" href="https://wa.me/{{ settings.site_settings.SocialMediaSettings.whatsapp }}" target="_blank" role="button">
+  <i class="fab fa-whatsapp"></i>
+  </a>
+  {% endif %}
+
+  {% if settings.site_settings.SocialMediaSettings.pinterest %}
+  <a class="btn btn-outline-light btn-floating m-1" href="{{ settings.site_settings.SocialMediaSettings.pinterest }}" role="button">
+  <i class="fab fa-pinterest"></i>
+  </a>
+  {% endif %}
+
+  </section>
+
+ {% if footer.menu_items.all %}
+  <section class="">
+  <div class="row">
+  <div class="mb-4 mb-md-0 text-center">
+
+  <h5 class="text-uppercase">Links</h5>
+
+  <ul class="list-unstyled mb-0">
+  {% for item in footer.menu_items.all %}
+
+  <strong>
+  <li>
+          <a class="text-white"{% if item.open_in_new_tab %} target="_blank"{% endif %} href="{{ item.link }}">{{ item.title }}</a>
+        </li>
+		{% endfor %}
+		</strong>
+
+  </ul>
+
+
+  </div>
+  </div>
+  </section>
+  {% endif %}
+
+  </div>
+
+  {% get_footer_text %}
+
+  </footer>
+
+        {# Global javascript #}
+		<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/ARS.js' %}"></script>
+		<script>
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+</script>
+        {% block extra_js %}
+            {# Override this in templates to add extra javascript #}
+        {% endblock %}
+    </body>
+</html>
