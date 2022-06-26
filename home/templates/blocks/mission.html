@@ -1,7 +1,13 @@
 {% load wagtailimages_tags wagtailcore_tags %}
 
-<div class="main-carousel" data-flickity='{ "cellAlign": "left", "contain": true}'>
-<div class="carousel-cell">ghhdbndkmkhsi</div>
-<div class="carousel-cell"></div>
-<div class="carousel-cell"></div>
+<div class="p-5 text-center mt-5" style="background-color: skyblue;">
+<h1 class="mb-3 mt-5">{{ self.title }}</h1>
+<p class="mb-3 mt-3">
+{{ self.text }}
+</p>
+{% if self.button_page %}
+<a href="{{ self.button_page.url }}" class="btn btn-primary">{{ self.button_text }}</a>
+{% else %}
+<a href="{{ self.button.url }}" class="btn btn-primary">{{ self.button_text }}</a>
+{% endif %}
 </div>
