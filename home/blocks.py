@@ -54,7 +54,7 @@ class CarouselBlock(blocks.StructBlock):
 
 
     class Meta:
-        template = "blocks/carousel.html"
+        template = "blocks/homepage_card_block.html"
         icon = "plus"
         label = "Carousel"
 
@@ -62,9 +62,9 @@ class CarouselBlock(blocks.StructBlock):
 
 class AboutBlock(blocks.StructBlock):
     image = ImageChooserBlock(required=False)
-    title = blocks.CharBlock(required=True, max_length=60)
-    text = blocks.RichTextBlock(required=True, features=['bold','italic'])
-    button_page = blocks.PageChooserBlock(required=False)
+    title = blocks.CharBlock(required=False, max_length=60)
+    text = blocks.RichTextBlock(required=False, features=['bold','italic'])
+    button_page = blocks.PageChooserBlock(required=False, target_model=['home.AboutPage'])
     button_url = blocks.URLBlock(required=False)
     button_text = blocks.CharBlock(required=False, default='Read More', max_length=40)
 
@@ -79,9 +79,9 @@ class MissionBlock(blocks.StructBlock):
     image = ImageChooserBlock(required=False)
     title = blocks.CharBlock(required=True, max_length=60)
     text = blocks.RichTextBlock(required=True, features=['bold','italic'])
-    button_page = blocks.PageChooserBlock(required=False)
+    button_page = blocks.PageChooserBlock(required=False, target_model=['home.AboutPage'])
     button_url = blocks.URLBlock(required=False)
-    button_text = blocks.CharBlock(required=False, default='Read More', max_length=40)
+    button_text = blocks.CharBlock(required=False, default='Learn More', max_length=40)
 
 
     class Meta:
@@ -93,9 +93,9 @@ class DirectorBlock(blocks.StructBlock):
     image = ImageChooserBlock(required=False)
     title = blocks.CharBlock(required=True, max_length=60)
     text = blocks.RichTextBlock(required=True, features=['bold','italic'])
-    button_page = blocks.PageChooserBlock(required=False)
+    button_page = blocks.PageChooserBlock(required=False, target_model=['home.AboutPage'])
     button_url = blocks.URLBlock(required=False)
-    button_text = blocks.CharBlock(required=False, default='Read More', max_length=40)
+    button_text = blocks.CharBlock(required=False, default='Continue Reading', max_length=40)
 
 
     class Meta:

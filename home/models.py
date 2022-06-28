@@ -83,6 +83,10 @@ class HomePage(Page):
 
     content_panels = Page.content_panels + [
         StreamFieldPanel('jumbotron'),
+        StreamFieldPanel('about_section'),
+        StreamFieldPanel('card'),
+        StreamFieldPanel('mission'),
+        StreamFieldPanel('director'),
         MultiFieldPanel([
             FieldRowPanel([
                 FieldPanel('heading',),
@@ -91,10 +95,6 @@ class HomePage(Page):
              ]),
             StreamFieldPanel('carousel'),
             ], heading='Slide'),
-        StreamFieldPanel('card'),
-        StreamFieldPanel('about_section'),
-        StreamFieldPanel('mission'),
-        StreamFieldPanel('director'),
     ]
 
 

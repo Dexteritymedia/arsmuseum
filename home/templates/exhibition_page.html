@@ -6,5 +6,11 @@
 
 {% block content %}
 
+{{ self.title|title }}
+
+{% image self.image original as banner %}
+<img src="{{ banner.url }}" class="img-fluid rounded" alt="{{ banner.alt }}">
+
+{{ self.body|richtext|safe }}
 
 {% endblock %}

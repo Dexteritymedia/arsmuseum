@@ -5,19 +5,19 @@
 {% block body_class %}template-homepage{% endblock %}
 
 {% block content %}
-	
+
 	<div class="container">
 		<div class="row row-cols-1 row-cols-md-3 g-4 mt-3 mb-3">
-		
+
 		{% for post in posts %}
 				<div class="col">
 					<div class="card box-shadow-hover pointer">
 					<a href="{{ post.url }}">
 					{% image post.image original as blog_img %}
-						<img src="{{ blog_img.url }}" class="img-top2" alt="{{ blog_img.alt }}">
+						<img src="{{ blog_img.url }}" class="img-fluid" alt="{{ blog_img.alt }}">
 						<div class="card-img-overlay">
-					
-						
+
+
 						</div>
 							<div class="card-body">
 								<h1 style="font-size: 35px;" class="card-title">{{ post.title|title }}</h1>
@@ -30,11 +30,11 @@
 							</a>
 					</div>
 				</div>
-				
+
 		{% endfor %}
-		
+
 		</div>
-		
+
 		{% if posts.paginator.num_pages > 1 %}
 		<div class="container">
 		<div class="row">
@@ -47,7 +47,7 @@
 		</a>
 		</li>
 		{% endif %}
-		
+
 		{% for page_num in posts.paginator.page_range %}
 		<li class="page-item {% if page_num == posts.number %} active{% endif %}">
 		<a href="?page={{ page_num }}" class="page-link">
@@ -55,7 +55,7 @@
 		</a>
 		</li>
 		{% endfor %}
-		
+
 		{% if posts.has_next %}
 		<li class="page-item">
 		<a href="?page={{ posts.next_page_number }}" class="page-link">
@@ -68,9 +68,9 @@
 		</div>
 		</div>
 		{% endif %}
-		
-	
-		
+
+
+
 	</div>
 
 {% endblock %}

@@ -6,7 +6,7 @@ from wagtail.contrib.settings.models import BaseSetting, register_setting
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.core.fields import StreamField, RichTextField
 
-@register_setting
+@register_setting(icon='user')
 class SocialMediaSettings(BaseSetting):
     instagram = models.URLField(max_length=100, default='www.instagram.com/', null=True, blank=True, help_text='Instagram URL')
     facebook = models.URLField(max_length=100, default='www.facebook.com/', null=True, blank=True, help_text='Facebook URL')
@@ -67,7 +67,7 @@ class SiteSettings(BaseSetting):
 
 
 
-@register_setting
+@register_setting(icon='search')
 class GoogleMapSetting(BaseSetting):
     api_key = models.CharField(max_length=100, null=True, blank=True, verbose_name='Google Maps API Key', help_text='The API Key used for Google Maps')
     map_title = models.CharField(max_length=100, null=True, blank=True, verbose_name='Map TitleGoogle Place ID', help_text='Map Title for Screen readers, ex: Map to Goodale Park')
@@ -92,9 +92,9 @@ class GoogleMapSetting(BaseSetting):
         verbose_name = 'Google Map Setting'
 
 
-@register_setting
+@register_setting(icon='group')
 class AdmissionSetting(BaseSetting):
-    title = models.CharField(max_length=100, null=True, blank=True,)
+    title = models.CharField(max_length=100, default='Admission', null=True, blank=True,)
     body = RichTextField(blank=True)
 
 
@@ -110,7 +110,7 @@ class AdmissionSetting(BaseSetting):
 
 
 
-@register_setting
+@register_setting(icon='home')
 class AddressSetting(BaseSetting):
     address = RichTextField(blank=True)
     image = models.ForeignKey(
@@ -120,11 +120,13 @@ class AddressSetting(BaseSetting):
         related_name="+",
         on_delete=models.SET_NULL,
         )
+    phone_number = models.IntegerField(null=True, verbose_name='Phone Number', blank=True,)
 
 
     panels = [
         MultiFieldPanel([
             FieldPanel('address'),
+            FieldPanel('phone_number'),
             ImageChooserPanel('image'),
         ])
     ]
@@ -134,7 +136,7 @@ class AddressSetting(BaseSetting):
 
 
 
-@register_setting
+@register_setting(icon='time')
 class HourSetting(BaseSetting):
     time_and_date = RichTextField(verbose_name='Time and Day', blank=True,)
 

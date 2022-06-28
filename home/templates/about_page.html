@@ -7,4 +7,25 @@
 {% block content %}
 
 
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 mt-5">
+
+				<h1 class="display-4">{{ self.title|title }}</h1>
+				{% if subtitle %}
+				<div class="lead">{{ self.subtitle }}</div>
+				{% endif %}
+
+{% image self.image original as banner %}
+
+		<img src="{{ banner.url }}" class="img-fluid rounded" alt="{{ banner.alt }}">
+
+	<p>{{ self.body|richtext|safe }}</p>
+
+
+	</div>
+			</div>
+			</div>
+
+
 {% endblock %}

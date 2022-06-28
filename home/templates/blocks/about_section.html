@@ -6,7 +6,7 @@
 </p>
 {% if self.button_page %}
 <a href="{{ self.button_page.url }}" class="btn btn-primary">{{ self.button_text }}</a>
-{% else %}
+{% elif self.button_url %}
 <a href="{{ self.button.url }}" class="btn btn-primary">{{ self.button_text }}</a>
 {% endif %}
 </div>

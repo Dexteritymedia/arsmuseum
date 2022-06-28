@@ -4,7 +4,7 @@
 
 {% if content.image %}
 {% image content.image original as img %}
-<div class="p-5 text-center" style="height: 50vh; background-image: url('{{ img.url }}'); background-size: cover;">
+<div class="p-5 text-center adjust" style="height: 50vh; background-image: url('{{ img.url }}'); background-size: cover;">
 {% elif content.color %}
 <div class="p-5 text-center" style="background-color: {{ content.color }};">
 {% else %}
@@ -17,7 +17,7 @@
 
 <h3 class="mb-3 mt-5" style="font-size: 35px; color:{% if content.text_color %} {{ content.text_color }} {% endif %};"><b>{{ content.description|safe }}</b></h3>
 {% if content.button_page %}
-				<a href="{{ content.button_page.url }}" class="btn btn-primary btn-lg" role="button">{{ content.button_text }}</a>
+				<a href="{{ content.button_page.url }}" class="btn btn-primary btn-lg" style="border-color: grey; background-color: grey;" role="button">{{ content.button_text }}</a>
 			{% elif content.button_url %}
 				<a href="{{ content.button_url }}" class="btn btn-primary btn-lg" role="button">{{ content.button_text }}</a>
 			{% endif %}

@@ -1,15 +1,21 @@
 {% load wagtailimages_tags wagtailcore_tags %}
 
-<h1 class="mb-3 mt-5 text-center p-5">{{ self.title }}</h1>
+<div class="p-4" style="background-color:;">
 
+<h1 class="mt-5 text-center p-5">{{ self.title }}</h1>
+
+{% if self.image %}
 {% image self.image original as img %}
 <img src="{{ img.url }}" class="img-fluid mx-auto" alt="{{ img.alt }}">
+{% endif %}
 
-<p class="p-3 mb-3 mt-3">{{ self.text|safe|title }}</p>
+<p class="p-3 mb-3">{{ self.text|safe|truncatewords:100 }}</p>
 
 
 {% if self.button_page %}
-<a href="{{ self.button_page.url }}" class="p-3 btn btn-primary">{{ self.button_text }}</a>
-{% else %}
+<a href="{{ self.button_page.url }}" style="border-color: grey; background-color: grey;" class="p-3 btn btn-primary">{{ self.button_text }}</a>
+{% elif self.button_url %}
 <a href="{{ self.button.url }}" class="p-3 btn btn-primary">{{ self.button_text }}</a>
 {% endif %}
+
+</div>

@@ -1,24 +1,26 @@
 {% load wagtailimages_tags wagtailcore_tags %}
 
-
+<h5 class="text-center text-white mt-5">The African American Anti-Slavery, collective Resistance waged by Igala People found among the Gullah/African American population of the southeastern US.  </h5>
+<div class="mt-3 mb-3">
+<div class="row">
 {% for content in self.card %}
-<div class="col mb-5">
-					<div class="card mt-5 mb-5">
-					 {% image content.image original as img %}
-						<img src="{{ img.url }}" class="img-top2" alt="{{ img.alt }}">
-							<div class="card-body">
-								<h1 style="font-size: 35px;" class="card-title">{{ content.title|title }}</h1>
-								
-								<h5 class="card-title">{{ content.description|safe|title }}</h5>
-								<div class="text-end mt-5">
+<div class="col-6">
+<div class="text-center card mt-5">
+{% image content.image original as img %}
+<img src="{{ img.url }}" class="img fluid" alt="{{ img.alt }}">
+	</div>
+{% if content.title %}<h1 style="font-size: 35px;" class="card-title">{{ content.title }}</h1>{% endif %}
+<div class="text-white">
+<p class="text-white mt-3" style="font-size: 15px; color: #ffffff;">{{ content.description|safe }}</p>
+							</div>	<div class="text-center mt-5 mb-3">
 								{% if content.button_page %}
-				<a href="{{ content.button_page.url }}" class="btn btn-primary" role="button">{{ content.button_text }}</a>
+				<a href="{{ content.button_page.url }}" class="btn btn-primary" style="border-color: grey; background-color: grey;" role="button">{{ content.button_text }}</a>
 			{% elif content.button_url %}
 				<a href="{{ content.button_url }}" class="btn btn-primary" role="button">{{ content.button_text }}</a>
 				</div>
 			{% endif %}
-							</div>
-					</div>
-				</div>
-
+</div>
+</div>
 {% endfor %}
+</div>
+</div>
