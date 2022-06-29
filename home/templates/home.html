@@ -12,25 +12,14 @@
 {% for block in page.jumbotron %}
 	{% include_block block %}
 {% endfor %}
-<div class="container">
-<p class="mt-5">The greatest story never told...
-The African Redemptive Struggle Museum
-An Igala Kingdom USA Enterprise
 
-The ARS museum once, known as the Gullah Heritage Museum, 
-is America’s first anti-slavery resistance museum dedicated 
-to the African-American quest for freedom from 1526 to 1858. 
-It houses the largest selection of anti-slavery resistance 
-art in America.
 
-ARS Museum is 100% owned and operated by descendants of “self 
-liberated Africans” (a.k.a. maroons) and house in the historic 
-Independent African Methodist Episcopal Church founded in 1898.
+{% for block in page.about_section %}
+    {% include_block block %}
+{% endfor %}
 
-Come be inspired by the masterful paintings of the people and 
-events that shaped early American history
-</p>
-</div>
+
+
 <div class="container">
 <div class="row mb-5">
 {% if page.heading %}
@@ -48,22 +37,28 @@ events that shaped early American history
 </div>
 </div>
 
+{% comment %}
 {% for block in page.carousel %}
 	{% include_block block %}
 {% endfor %}
+{% endcomment %}
 
-
+<div class="mt-5 px-2" style="padding-top: 5px; padding-bottom: 15px; background-color: #000000;">
 {% for block in page.card %}
 	{% include_block block %}
 {% endfor %}
+</div>
 
-{% for block in page.about_section %}
-    {% include_block block %}
-{% endfor %}
+
 
 {% for block in page.mission %}
     {% include_block block %}
 {% endfor %}
+
+{% for block in page.director %}
+    {% include_block block %}
+{% endfor %}
+
 <!--
 <div class="container">
     <div class="col-12 mt-5">
@@ -81,38 +76,6 @@ events that shaped early American history
 </div>
 -->
 
-<div class="p-5 text-center mt-5" style="background-color: skyblue;">
-<h1 class="mb-3 mt-5">Mission</h1>
-<p class="mb-3 mt-3">The mission of the African Redemptive Struggle 
-Museum is to share the life’s work of Gullah Interpretive Realism 
-Painter Brother Nizar ( better known as Kelvin M Blufton Sr.) as 
-we learn from the past, honor those who fought valiantly for freedom, 
-and inspire future generations with the greatest story never told...</p>
-<a href="" class="btn btn-primary">Learn More</a>
-</div>
-
-<div class="p-4" style="background-color:;">
-
-<h1 class="mb-3 mt-5 text-center p-5">Director's Statement</h1>
-
-<img class="img-fluid mx-auto" src="{% static '/images/1.jpg' %}" >
-
-<p class="p-3 mb-3 mt-3">This museum challenges the notion that 
-“SLAVES” were taken from Africa and forced to toil and labor as 
-part of a “Trans Atlantic Slave Trade”. It is our position that 
-no slaves were taken from Africa. Africans were taken from Africa.  
-Africans had well ordered, advanced societies before Europeans 
-had a building with windows; before they wore shoes.  The Ebers 
-Papyrus, an extensive record of ancient Kemet (Egypt) medicine 
-was written in1455AD.
-
-We, descendants of Africans forcefully migrated to North America, 
-South America, the Caribbean and beyond, remain Africans, as much 
-as the biblical Israelites remained Israelites in Babylon, Egypt and beyond.
-
-In 2020, DNA researchers from the University of Pennsylvania...</p><a href="" class="p-3 btn btn-primary">Continue Reading
-</a>
-</div>
 {% endblock content %}
 
 
@@ -144,3 +107,4 @@ $carousel.on( 'scroll.flickity', function() {
 });
 </script>
 {% endblock extra_js %}
+

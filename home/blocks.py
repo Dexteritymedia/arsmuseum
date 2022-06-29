@@ -56,7 +56,7 @@ class CarouselBlock(blocks.StructBlock):
     class Meta:
         template = "blocks/homepage_card_block.html"
         icon = "plus"
-        label = "Carousel"
+        label = "Slide"
 
 
 
@@ -100,7 +100,7 @@ class DirectorBlock(blocks.StructBlock):
 
     class Meta:
         template = "blocks/director_block.html"
-        label = "Mission"
+        label = "Director"
 
 
 class CardBlock(blocks.StructBlock):
@@ -124,5 +124,5 @@ class CardBlock(blocks.StructBlock):
     class Meta:
         template = "blocks/card_block.html"
         icon = "list-ul"
-        label = "Card Block"
+        label = "Arts Block"
         max_num = 1

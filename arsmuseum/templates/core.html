@@ -105,47 +105,62 @@
 
         {% block content %}{% endblock %}
 
+<footer class="text-white mt-5" style="background-color: #00008B;">
 
-    <footer class="text-white mt-5" style="background-color: #00008B;">
-    <div class="container mt-5 mb-5">
+    <div class="container mt-5">
     <div class="row">
-        <div class="col-12 mt-5 mb-5">
-           <h1 class="mt-5"><i class="fas fa-archway"></i> Admission</h1>
+     <div class="col-12 mt-5 mb-5">
 
-
-<p>Adult $18.00</p>
-
-<p>Senior $16.20</p>
-
-<p>Military $16.20</p>
-
-<p>Youth (4-12) $9.00</p>
-
-<p>Children under 4 $0.00</p>
-
-<p>Members $0.00</p>
+{% if settings.site_settings.AdmissionSetting.body %}
+<h1 class="mt-5"><i class="fas fa-archway"></i> {{ settings.site_settings.AdmissionSetting.title }}</h1>
+<p>{{ settings.site_settings.AdmissionSetting.body|safe }}</p>
+{% endif %}
 
 <hr>
+
+{% if settings.site_settings.HourSetting.time_and_date %}
 <h1><i class='fas fa-calendar-alt' style='font-size:28px'></i> Hours</h1>
+<p>{{ settings.site_settings.HourSetting.time_and_date|safe }}</p>
+{% endif %}
 
+<hr>
 
-<p>Wednesday-Saturday.   <b>10am - 4pm</b></p>
+{% if settings.site_settings.AddressSetting.address %}
+<h1><i class='fas fa-map-marker-alt' style='font-size:28px'></i> Address</h1>
+<p>{{ settings.site_settings.AddressSetting.address|safe }}</p>
+{% if settings.site_settings.AddressSetting.phone_number %}
+<p><i class="fas fa-phone"></i> {{ settings.site_settings.AddressSetting.phone_number }}</p>
+{% endif %}
+{% endif %}
 
-<p>Sunday-Tuesday by appointment only</p>
-<hr><h1><i class='fas fa-map-marker-alt' style='font-size:28px'></i> Address</h1>
-<p class="mb-5">249 St Philip Street Charleston SC 29403
-<br/>Historic Independent African Methodist Episcopal Church building</p>
-<p><i class="fas fa-phone"></i> 843-722-6166</p>
+{% if settings.site_settings.AddressSetting.image %}
+{% image settings.site_settings.AddressSetting.image max-100x100 as image %}
+<a href="/" style="margin: 5px;">
+<img src="{{ image.url }}" alt="{{ settings.site_settings.AddressSetting.site_name }}" class="img-fluid">
+</a>
+{% endif %}
+
 </div>
 </div>
 </div>
-</footer>
+
+{% if settings.site_settings.GoogleMapSetting.place_id %} 
+ <iframe class="embed-responsive-item" width="100%" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:{{ settings.site_settings.GoogleMapSetting.place_id }}&zoom={{ settings.site_settings.GoogleMapSetting.map_zoom_level }}&key={{ settings.site_settings.GoogleMapSetting.api_key }}" title="{{ settings.site_settings.GoogleMapSetting.map_title }}" allowfullscreen></iframe> 
+ {% else %} 
+ <iframe class="embed-responsive-item" width="100%" style="border:0" src="https://maps.google.com/maps?q={{ settings.site_settings.GoogleMapSetting.search|urlencode }}&output=embed" title="{{ settings.site_settings.GoogleMapSetting.map_title }}" allowfullscreen></iframe> 
+ {% endif %}
+ 
+ </footer>
+
 
 
 
 <footer class="bg-dark text-center text-white">
   <div class="container p-4">
-<h1>Join Us on</h1>
+  {% if settings.site_settings.SocialMediaSettings.title %}
+<h1>{{ settings.site_settings.SocialMediaSettings.title }}</h1>
+{% endif %}
+
   <section class="mb-4 mt-3">
   {% if settings.site_settings.SocialMediaSettings.facebook %}
   <a class="btn btn-outline-light btn-floating m-1" href="{{ settings.site_settings.SocialMediaSettings.facebook }}" role="button">

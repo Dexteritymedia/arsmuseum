@@ -2,11 +2,11 @@
 
 <div class="p-4" style="background-color:;">
 
-<h1 class="mt-5 text-center p-5">{{ self.title }}</h1>
+<h1 class="text-center p-5">{{ self.title }}</h1>
 
 {% if self.image %}
 {% image self.image original as img %}
-<img src="{{ img.url }}" class="img-fluid mx-auto" alt="{{ img.alt }}">
+<img src="{{ img.url }}" class="img-fluid d-flex mx-auto" alt="{{ img.alt }}">
 {% endif %}
 
 <p class="p-3 mb-3">{{ self.text|safe|truncatewords:100 }}</p>

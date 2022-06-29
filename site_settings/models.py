@@ -8,6 +8,7 @@ from wagtail.core.fields import StreamField, RichTextField
 
 @register_setting(icon='user')
 class SocialMediaSettings(BaseSetting):
+    title = models.CharField(max_length=100, null=True, blank=True, default='Join Us on', help_text='Title')
     instagram = models.URLField(max_length=100, default='www.instagram.com/', null=True, blank=True, help_text='Instagram URL')
     facebook = models.URLField(max_length=100, default='www.facebook.com/', null=True, blank=True, help_text='Facebook URL')
     twitter = models.URLField(max_length=100, default='www.twitter.com/', null=True, blank=True, help_text='Twitter URL')
@@ -17,7 +18,7 @@ class SocialMediaSettings(BaseSetting):
     
     panels = [
         MultiFieldPanel([
-            
+            FieldPanel('title'),
             FieldPanel('instagram'),
             FieldPanel('facebook'),
             FieldPanel('twitter'),
@@ -62,7 +63,7 @@ class SiteSettings(BaseSetting):
         ]
 
     class Meta:
-        verbose_name = 'Site Setting'
+        verbose_name = 'Site Settings'
 
 
 
@@ -70,8 +71,8 @@ class SiteSettings(BaseSetting):
 @register_setting(icon='search')
 class GoogleMapSetting(BaseSetting):
     api_key = models.CharField(max_length=100, null=True, blank=True, verbose_name='Google Maps API Key', help_text='The API Key used for Google Maps')
-    map_title = models.CharField(max_length=100, null=True, blank=True, verbose_name='Map TitleGoogle Place ID', help_text='Map Title for Screen readers, ex: Map to Goodale Park')
-    place_id = models.CharField(max_length=100, null=True, blank=True, verbose_name='', help_text='Requires API Key to use place ID')
+    map_title = models.CharField(max_length=100, null=True, blank=True, verbose_name='Map Title', help_text='Map Title for Screen readers, ex: Map to Goodale Park')
+    place_id = models.CharField(max_length=100, null=True, blank=True, verbose_name='Google Place ID', help_text='Requires API Key to use place ID')
     map_zoom_level = models.IntegerField(null=True, verbose_name='Map zoom level', blank=True, help_text='Requires API Key to use zoom. 1: World, 5: Landmass/Continent, 10: City, 15: Streets, 20: Buildings')
     search = models.CharField(blank=True, verbose_name='Search', help_text='Address or search term used to find your location on the map', max_length=250)
 
@@ -89,7 +90,7 @@ class GoogleMapSetting(BaseSetting):
         ]
 
     class Meta:
-        verbose_name = 'Google Map Setting'
+        verbose_name = 'Google Map Settings'
 
 
 @register_setting(icon='group')
@@ -106,7 +107,7 @@ class AdmissionSetting(BaseSetting):
         ]
 
     class Meta:
-        verbose_name = 'Admission Setting'
+        verbose_name = 'Admission'
 
 
 
@@ -120,7 +121,7 @@ class AddressSetting(BaseSetting):
         related_name="+",
         on_delete=models.SET_NULL,
         )
-    phone_number = models.IntegerField(null=True, verbose_name='Phone Number', blank=True,)
+    phone_number = models.CharField(max_length=50, null=True, verbose_name='Phone Number', blank=True,)
 
 
     panels = [
@@ -132,7 +133,7 @@ class AddressSetting(BaseSetting):
     ]
 
     class Meta:
-        verbose_name = 'Address Setting'
+        verbose_name = 'Address'
 
 
 
@@ -148,6 +149,6 @@ class HourSetting(BaseSetting):
     ]
 
     class Meta:
-        verbose_name = 'Hours Setting'
+        verbose_name = 'Day and Time'
 
 
